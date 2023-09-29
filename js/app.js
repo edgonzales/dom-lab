@@ -1,24 +1,44 @@
-
-/*
-Task 1.0
-Select and cache the <main> element in a variable named mainEl.
-*/
+const menuLinks = [
+    {text: 'about', href: '/about'},
+    {text: 'catalog', href: '/catalog'},
+    {text: 'orders', href: '/orders'},
+    {text: 'account', href: '/account'},
+  ];
 
 const mainEl = document.querySelector('main');
-localStorage['myKey'] = JSON.stringify(mainEl);
+localStorage['myMainElKey'] = JSON.stringify(mainEl);
 console.log(localStorage);
-
-/*
-Task 1.1
-Set the background color of mainEl using the --main-bg CSS custom property.
-
-Hint: Assign a string that uses the CSS var() function like this:
-'var(--main-bg)'
-*/
 mainEl.style.background = ('var(--main-bg)');
+mainEl.innerHTML = '<h1>SEI Rocks!</h1>';
+mainEl.classList.add('flex-ctr');
+const topMenuEl = document.getElementById('top-menu');
+console.log(topMenuEl);
+localStorage['myTopMenuElKey'] = JSON.stringify(topMenuEl)
+console.log(localStorage);
+topMenuEl.style.height = '100%';
+console.log(topMenuEl.style.height);
+topMenuEl.style.background = 'var(--top-menu-bg)';
+topMenuEl.classList.add('flex-around');
 
 /*
-Task 1.2
-Set the content of mainEl to <h1>SEI Rocks!</h1>.
+Task 3.1
+Iterate over the entire menuLinks array and for each "link" object:
+
+Create an <a> element.
+
+On the new element, add an href attribute with its value set to the 
+href property of the "link" object.
+
+Set the new element's content to the value of the text property of 
+the "link" object.
+
+Append the new element to the topMenuEl element.
 */
-mainEl.innerHTML = '<h1>SEI Rocks!</h1>';
+menuLinks.forEach(function(link){
+    const aEl = document.createElement('a');
+    aEl.setAttribute('href', link.href);
+    //console.log(aEl);
+    aEl.textContent = menuLinks.text;
+    topMenuEl.appendChild(aEl);
+    
+})
