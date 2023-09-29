@@ -4,13 +4,14 @@ const menuLinks = [
     {text: 'orders', href: '/orders'},
     {text: 'account', href: '/account'},
   ];
-
 const mainEl = document.querySelector('main');
+const topMenuEl = document.getElementById('top-menu');
+
+
 localStorage['myMainElKey'] = JSON.stringify(mainEl);
 mainEl.style.background = ('var(--main-bg)');
 mainEl.innerHTML = '<h1>SEI Rocks!</h1>';
 mainEl.classList.add('flex-ctr');
-const topMenuEl = document.getElementById('top-menu');
 localStorage['myTopMenuElKey'] = JSON.stringify(topMenuEl)
 topMenuEl.style.height = '100%';
 topMenuEl.style.background = 'var(--top-menu-bg)';
@@ -29,8 +30,21 @@ Append the new element to the topMenuEl element.
 menuLinks.forEach(function(link){
     const aEl = document.createElement('a');
     aEl.setAttribute('href', link.href);
-    //console.log(aEl);
     aEl.textContent = link.text;
     topMenuEl.appendChild(aEl);
-    console.log(aEl.textContent);
 })
+
+/*
+Task 4.0
+Select and cache the <nav id="sub-menu"> element in a variable named 
+subMenuEl.
+*/
+
+const subMenuEl = document.getElementById('sub-menu');
+
+localStorage['mySubMenuElKey'] = JSON.stringify(subMenuEl);
+subMenuEl.style.height = '100%'
+subMenuEl.style.background = ('var(--sub-menu-bg')
+subMenuEl.classList.add('flex-around');
+subMenuEl.style.position =  'absolute';
+subMenuEl.style.top =  '0';
