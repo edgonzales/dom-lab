@@ -1,9 +1,23 @@
+
+const showingSubMenu = false;
 const menuLinks = [
     {text: 'about', href: '/about'},
-    {text: 'catalog', href: '/catalog'},
-    {text: 'orders', href: '/orders'},
-    {text: 'account', href: '/account'},
+    {text: 'catalog', href: '#', subLinks: [
+      {text: 'all', href: '/catalog/all'},
+      {text: 'top selling', href: '/catalog/top'},
+      {text: 'search', href: '/catalog/search'},
+    ]},
+    {text: 'orders', href: '#' , subLinks: [
+      {text: 'new', href: '/orders/new'},
+      {text: 'pending', href: '/orders/pending'},
+      {text: 'history', href: '/orders/history'},
+    ]},
+    {text: 'account', href: '#', subLinks: [
+      {text: 'profile', href: '/account/profile'},
+      {text: 'sign out', href: '/account/signout'},
+    ]},
   ];
+  
 const mainEl = document.querySelector('main');
 const topMenuEl = document.getElementById('top-menu');
 
@@ -17,16 +31,6 @@ topMenuEl.style.height = '100%';
 topMenuEl.style.background = 'var(--top-menu-bg)';
 topMenuEl.classList.add('flex-around');
 
-/*
-Task 3.1
-Iterate over the entire menuLinks array and for each "link" object:
-Create an <a> element.
-On the new element, add an href attribute with its value set to the 
-href property of the "link" object.
-Set the new element's content to the value of the text property of 
-the "link" object.
-Append the new element to the topMenuEl element.
-*/
 menuLinks.forEach(function(link){
     const aEl = document.createElement('a');
     aEl.setAttribute('href', link.href);
@@ -34,17 +38,24 @@ menuLinks.forEach(function(link){
     topMenuEl.appendChild(aEl);
 })
 
-/*
-Task 4.0
-Select and cache the <nav id="sub-menu"> element in a variable named 
-subMenuEl.
-*/
-
 const subMenuEl = document.getElementById('sub-menu');
 
 localStorage['mySubMenuElKey'] = JSON.stringify(subMenuEl);
 subMenuEl.style.height = '100%'
 subMenuEl.style.background = ('var(--sub-menu-bg')
 subMenuEl.classList.add('flex-around');
-subMenuEl.style.position =  'absolute';
-subMenuEl.style.top =  '0';
+subMenuEl.style.position = 'absolute';
+subMenuEl.style.top = '0';
+
+const topMenuLinks = document.querySelector('a');
+localStorage['myTopMenuLinksElKey'] = JSON.stringify(topMenuLinks);
+
+topMenuEl.addEventListener('click', function(event){
+    event.preventDefault();
+    let anchor = event.target.closest('a');
+    if(anchor !== null) {
+        console.log(anchor.textContent.toUpperCase());
+    } else {
+        return;
+    }
+})
