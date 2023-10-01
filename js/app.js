@@ -103,3 +103,14 @@ topMenuEl.addEventListener('click', function(event){
         })
     }
 })
+
+// Task 6.0
+subMenuEl.addEventListener('click', function(event){
+    event.preventDefault();
+    const anchor = event.target.closest('a');
+    if(!anchor){
+        return;
+    }
+    console.log(anchor);
+    }
+)
