@@ -112,5 +112,9 @@ subMenuEl.addEventListener('click', function(event){
         return;
     }
     console.log(anchor);
+    
+// Task 6.1
+    showingSubMenu = false;
+    subMenuEl.style.top = '0'    
     }
 )
