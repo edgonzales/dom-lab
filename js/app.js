@@ -22,6 +22,15 @@ const mainEl = document.querySelector('main');
 const topMenuEl = document.getElementById('top-menu');
 const allAnchors = document.querySelectorAll('a');
 
+let subLinksArr = [];
+subLinksArr = menuLinks.forEach(function(links){
+    if(links.subLinks !== undefined){
+       subLinksArr.push(links.subLinks);
+       console.log(subLinksArr); // why do I get 3?
+    } else {
+        console.log('this menu link does not have a sublink');
+    }
+})
 
 localStorage['myMainElKey'] = JSON.stringify(mainEl);
 mainEl.style.background = ('var(--main-bg)');
@@ -64,9 +73,28 @@ topMenuEl.addEventListener('click', function(event){
         return;
     }
     // removes all active classes for all anchors
-    allAnchors.forEach(function(eachAnchor){
-        eachAnchor.classList.remove('active');
-        console.log(eachAnchor);
+    allAnchors.forEach(function(a){
+        a.classList.remove('active');
     })
     anchor.classList.add('active');
+    
+    if(anchor.contains('subLinks')){
+        showingSubMenu = true;
+    } else {
+        showingSubMenu = false;
+    }
 })
+
+/*
+Task 5.6
+Next, add code in the event listener that sets showingSubMenu to true 
+if the clicked <a> 
+element's "link" object within menuLinks has a subLinks property (all do, except for the 
+    "link" object for ABOUT), otherwise, set it to false.
+
+Hint: Saving the "link" object in a variable will come in handy for passing its subLinks 
+array in Task 5.7
+
+Progress Check
+Clicking any of the links should make that link "active" and clear the others:
+*/
