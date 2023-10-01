@@ -53,7 +53,6 @@ subMenuEl.style.top = '0';
 topMenuEl.addEventListener('click', function(event){
     event.preventDefault();
     const anchor = event.target.closest('a');
-    //const activeElement = document.activeElement;
     // if(anchor !== null) {
     //     console.log(anchor.textContent)
     //      return anchor.textContent.toUpperCase();
@@ -63,18 +62,43 @@ topMenuEl.addEventListener('click', function(event){
     //     subMenuEl.style.top = '0';
     //     return;
     // }
+
+    // converts the HTML collection to an array
     // removes all active classes for all anchors
-    console.log(topMenuEl.children);
     [...topMenuEl.children].forEach(function(a){
-        console.log(a);
         a.classList.remove('active');
     })
     anchor.classList.add('active');
 
+    // Task 5.6
+    // function expression assigned to a variable activeLink, that 
+    // returns true if link.text equal to the clicked anchor's textContent
     const activeLink = menuLinks.find(function(link){
-        
         return link.text === anchor.textContent;
     })
 
     showingSubMenu =!! activeLink.subLinks
+
+    // Task 5.7 
+    // if showingSubMenu is true, then build a submenu based on the click and it's menu list's
+    /// sublinks 
+    if(showingSubMenu){
+        buildSubMenu(activeLink.subLinks);
+        subMenuEl.style.top = '100%';
+    } else {
+        subMenuEl.style.top = '0';
+        mainEl.innerHTML = '<h1>about</h1>';
+    }
+
+    // function that takes an array of subLinks, then loops through each link, creates
+    // a new anchor element, assigns the link's text, and then appends the new anchor
+    // at the end, thus building the sub menu
+    function buildSubMenu (subLinks) {
+        subMenuEl.innerHTML = '';
+        subLinks.forEach(function (link) {
+            const linkEl = document.createElement('a');
+            linkEl.textContent = link.text;
+            subMenuEl.appendChild(linkEl);
+        })
+    }
 })
