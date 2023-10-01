@@ -79,7 +79,7 @@ topMenuEl.addEventListener('click', function(event){
 
     showingSubMenu =!! activeLink.subLinks
 
-    // Task 5.7 
+    // Task 5.7 + 5.8
     // if showingSubMenu is true, then build a submenu based on the click and it's menu list's
     /// sublinks 
     if(showingSubMenu){
@@ -90,13 +90,14 @@ topMenuEl.addEventListener('click', function(event){
         mainEl.innerHTML = '<h1>about</h1>';
     }
 
-    // function that takes an array of subLinks, then loops through each link, creates
-    // a new anchor element, assigns the link's text, and then appends the new anchor
-    // at the end, thus building the sub menu
+    // Function that takes an array of subLinks, then loops through each link, creates
+    // a new anchor element, assigns the link's href + text, and then appends the new anchor
+    // at the end, thus building the sub menu.  
     function buildSubMenu (subLinks) {
         subMenuEl.innerHTML = '';
         subLinks.forEach(function (link) {
             const linkEl = document.createElement('a');
+            linkEl.href = link.href;
             linkEl.textContent = link.text;
             subMenuEl.appendChild(linkEl);
         })
