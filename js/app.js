@@ -50,12 +50,29 @@ subMenuEl.style.top = '0';
 const topMenuLinks = document.querySelector('a');
 localStorage['myTopMenuLinksElKey'] = JSON.stringify(topMenuLinks);
 
+/*
+Task 5.3
+This feature "deselects" the menu item if it's clicked when it's currently active, 
+resulting in the sub-menu sliding up as well.
+
+Next in the event listener, if the clicked <a> link has a class of active:
+- Remove the active class from the clicked <a> element.
+- Set the showingSubMenu to false.
+- Set the CSS top property of subMenuEl to 0.
+- return; from the event listener function.
+*/
+
+
 topMenuEl.addEventListener('click', function(event){
     event.preventDefault();
     let anchor = event.target.closest('a');
+    //const activeElement = document.activeElement;
     if(anchor !== null) {
         console.log(anchor.textContent.toUpperCase());
-    } else {
+    } else if (anchor.contains('active')){
+        anchor.classList.remove(".active");
+        showingSubMenu = false;
+        subMenuEl.style.top = '0';
         return;
     }
 })
