@@ -63,8 +63,10 @@ topMenuEl.addEventListener('click', function(event){
         subMenuEl.style.top = '0';
         return;
     }
+    // removes all active classes for all anchors
     allAnchors.forEach(function(eachAnchor){
         eachAnchor.classList.remove('active');
         console.log(eachAnchor);
     })
+    anchor.classList.add('active');
 })
