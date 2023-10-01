@@ -47,8 +47,12 @@ subMenuEl.classList.add('flex-around');
 subMenuEl.style.position = 'absolute';
 subMenuEl.style.top = '0';
 
-//const topMenuLinks = document.querySelector('a');
-//localStorage['myTopMenuLinksElKey'] = JSON.stringify(topMenuLinks);
+const topMenuLinks = document.querySelectorAll('a');
+
+// converted topMenuLinks to an array so that I could use array methods, such as forEach()
+const topMenuLinksArr = Array.from(topMenuLinks);
+
+localStorage['myTopMenuLinksElKey'] = JSON.stringify(topMenuLinks);
 
 topMenuEl.addEventListener('click', function(event){
     event.preventDefault();
@@ -116,5 +120,12 @@ subMenuEl.addEventListener('click', function(event){
 // Task 6.1
     showingSubMenu = false;
     subMenuEl.style.top = '0'    
-    }
+
+// Task 6.2
+// Note that I converted the topMenuLink from a NodeList to an array
+    topMenuLinksArr.forEach(function(a){
+            a.classList.remove('active');
+    })    
+
+}
 )
