@@ -18,7 +18,7 @@ const menuLinks = [
     ]},
   ];
   
-const mainEl = document.querySelector('main');
+let mainEl = document.querySelector('main');
 const topMenuEl = document.getElementById('top-menu');
 
 
@@ -57,15 +57,6 @@ localStorage['myTopMenuLinksElKey'] = JSON.stringify(topMenuLinks);
 topMenuEl.addEventListener('click', function(event){
     event.preventDefault();
     const anchor = event.target.closest('a');
-    // if(anchor !== null) {
-    //     console.log(anchor.textContent)
-    //      return anchor.textContent.toUpperCase();
-    // } else if (anchor.contains('active')){
-    //     anchor.classList.remove('active');
-    //     showingSubMenu = false;
-    //     subMenuEl.style.top = '0';
-    //     return;
-    // }
 
     // converts the HTML collection to an array
     // removes all active classes for all anchors
@@ -115,7 +106,6 @@ subMenuEl.addEventListener('click', function(event){
     if(!anchor){
         return;
     }
-    console.log(anchor);
     
 // Task 6.1
     showingSubMenu = false;
@@ -126,6 +116,10 @@ subMenuEl.addEventListener('click', function(event){
     topMenuLinksArr.forEach(function(a){
             a.classList.remove('active');
     })    
-
+// Task 6.3
+    mainEl.innerHTML = '';
+    const newH1El = document.createElement('h1');
+    newH1El.textContent = anchor.textContent
+    mainEl.appendChild(newH1El);
 }
 )
