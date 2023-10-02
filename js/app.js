@@ -1,3 +1,5 @@
+// DOM Lab 1: https://git.generalassemb.ly/SEI-CC/sei-9-25/blob/main/Unit_1/04-dom/4.1.1-dom-menu-lab-part-1.md
+// DOM Lab 2: https://git.generalassemb.ly/SEI-CC/sei-9-25/blob/main/Unit_1/04-dom/4.2.1-dom-menu-lab-part-2.md
 
 let showingSubMenu = false;
 const menuLinks = [
